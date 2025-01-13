@@ -50,10 +50,7 @@ const login = async () => {
         <input type="password" id="password" name="password" v-model="password" @input="changeValue"
           placeholder="Password" />
       </div>
-      <!-- <button type="submit" :disabled="valid">Login</button> -->
-      <v-btn>
-        Login
-      </v-btn>
+      <button type="submit" :disabled="valid">Login</button>
     </form>
   </div>
 </template>
