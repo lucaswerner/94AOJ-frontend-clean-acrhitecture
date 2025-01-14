@@ -12,10 +12,9 @@ const validationComposite = ValidationComposite.build([
 
 </script>
 <template>
-    <Login 
-      :authentication="MakeAuthentication()" 
-      :currentAccount="MakeCurrentAccountAdapter()"
-      :validation="validationComposite"
-    />
-  </template>
-
+  <Login 
+    :authentication="MakeAuthentication()" 
+    :currentAccount="MakeCurrentAccountAdapter()"
+    :validation="validationComposite" 
+  />
+</template>

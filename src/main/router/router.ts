@@ -8,6 +8,7 @@ const routes = [
     path: "/",
     name: "Home",
     component: HomeFactory,
+    alias: "/home",
   },
   {
     path: "/login",
