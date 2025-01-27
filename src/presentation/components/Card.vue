@@ -1,19 +1,10 @@
 <script setup lang="ts">
 import { defineProps } from 'vue'
-
-type ItemData = {
-    id: number,
-    image: string,
-    title: string,
-    description: string
-    value: number
-}
+import { CardData } from '../../domain/models/cardData';
 
 defineProps<{
-    data: ItemData,
-    onAdd: (data: ItemData) => void,
-    onRemove: (data: ItemData) => void
-    count: number
+    data: CardData,
+    onAdd: (data: CardData) => void
 }>()
 
 function formatNumber(numberValue: number = 0) {
@@ -28,7 +19,12 @@ function formatNumber(numberValue: number = 0) {
                 <v-col>
                     <v-carousel :show-arrows="false" hide-delimiters cycle>
                         <v-carousel-item v-for="(image, index) in data.image" :key="index">
-                            <v-img :src="image" class="image-overlay"></v-img>
+                            <v-img class="image-overlay" height="300" max-width="500" :src="image">
+                                <template v-slot:error>
+                                    <v-img class="image-overlay" height="300" max-width="500"
+                                        src="src/assets/no-image-available.jpg"></v-img>
+                                </template>
+                            </v-img>
                         </v-carousel-item>
                     </v-carousel>
                 </v-col>
@@ -46,7 +42,7 @@ function formatNumber(numberValue: number = 0) {
                 </div>
 
                 <div class="option-wrapper">
-                    <v-btn icon="mdi-minus-circle" @click="onRemove(data)"></v-btn>
+                    <v-btn icon="mdi-minus-circle" @click="onAdd(data)"></v-btn>
                 </div>
             </v-card-actions>
         </v-card>
@@ -61,7 +57,7 @@ function formatNumber(numberValue: number = 0) {
 
 .image-overlay {
     max-width: 100%;
-    max-height: 100%;
+    height: initial !important;
     object-fit: cover;
 }
 
