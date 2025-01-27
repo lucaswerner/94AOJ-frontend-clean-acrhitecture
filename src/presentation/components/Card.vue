@@ -1,32 +1,30 @@
 <script setup lang="ts">
-import { defineProps } from 'vue'
-
-type ItemData = {
-    id: number,
-    image: string,
-    title: string,
-    description: string
-    value: number
-}
+import { defineProps } from 'vue';
+import { CardData } from '../../domain/models/cardData';
 
 defineProps<{
-    data: ItemData,
-    onAdd: (data: ItemData) => void,
-    onRemove: (data: ItemData) => void
+    data: CardData,
+    onAdd: (data: CardData) => void,
+    onRemove: (data: CardData) => void
     count: number
 }>()
 
-function formatNumber(numberValue: number = 0) {
-    return numberValue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-}
+const formatNumber = (numberValue: number = 0): string => numberValue
+    .toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
 </script>
 
 <template>
     <v-hover v-slot="{ isHovering, props }">
-        <v-card variant="tonal" v-bind="props" :elevation="isHovering ? 24 : 6" class="item-card-wrapper">
+        <v-card variant="tonal" v-bind="props" :elevation="isHovering ? 24 : 6" class="card-wrapper">
             <v-row>
                 <v-col>
-                    <v-img :src="data.image"></v-img>
+                    <v-img class="mx-auto" height="300" max-width="500" :src="data.image">
+                        <template v-slot:error>
+                            <v-img class="mx-auto" height="300" max-width="500"
+                                src="src/assets/no-image-available.jpg"></v-img>
+                        </template>
+                    </v-img>
                 </v-col>
             </v-row>
             <v-row>
@@ -52,7 +50,7 @@ function formatNumber(numberValue: number = 0) {
 </template>
 
 <style scoped>
-.item-card-wrapper {
+.card-wrapper {
     max-width: 300px;
 }
 
