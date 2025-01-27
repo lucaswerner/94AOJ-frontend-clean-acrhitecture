@@ -42,7 +42,7 @@ function formatNumber(numberValue: number = 0) {
                 </div>
 
                 <div class="option-wrapper">
-                    <v-btn icon="mdi-minus-circle" @click="onAdd(data)"></v-btn>
+                    <v-btn icon="mdi-cart" @click="onAdd(data)"></v-btn>
                 </div>
             </v-card-actions>
         </v-card>
