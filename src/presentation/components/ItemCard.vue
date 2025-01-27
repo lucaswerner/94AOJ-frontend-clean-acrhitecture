@@ -23,10 +23,14 @@ function formatNumber(numberValue: number = 0) {
 
 <template>
     <v-hover v-slot="{ isHovering, props }">
-        <v-card variant="tonal" v-bind="props" :elevation="isHovering ? 24 : 6" class="item-card-wrapper">
-            <v-row>
+        <v-card variant="tonal" v-bind="props">
+            <v-row class="image-row">
                 <v-col>
-                    <v-img :src="data.image"></v-img>
+                    <v-carousel :show-arrows="false" hide-delimiters cycle>
+                        <v-carousel-item v-for="(image, index) in data.image" :key="index">
+                            <v-img :src="image" class="image-overlay"></v-img>
+                        </v-carousel-item>
+                    </v-carousel>
                 </v-col>
             </v-row>
             <v-row>
@@ -43,8 +47,6 @@ function formatNumber(numberValue: number = 0) {
 
                 <div class="option-wrapper">
                     <v-btn icon="mdi-minus-circle" @click="onRemove(data)"></v-btn>
-                    <span class="count">{{ count }}</span>
-                    <v-btn icon="mdi-plus-circle" @click="onAdd(data)"></v-btn>
                 </div>
             </v-card-actions>
         </v-card>
@@ -52,8 +54,15 @@ function formatNumber(numberValue: number = 0) {
 </template>
 
 <style scoped>
-.item-card-wrapper {
-    max-width: 300px;
+.image-row {
+    max-height: 180px;
+    overflow: hidden;
+}
+
+.image-overlay {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: cover;
 }
 
 .v-card-actions {

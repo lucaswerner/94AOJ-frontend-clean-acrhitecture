@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 
 import HomeFactory from "../factories/pages/home/HomeFactory.vue";
 import LoginFactory from "../factories/pages/login/LoginFactory.vue";
+import BurgerFactory from "../factories/pages/burgers/BurgerFactory.vue";
 
 const routes = [
   {
@@ -15,6 +16,11 @@ const routes = [
     name: "Login",
     component: LoginFactory,
   },
+  {
+    path: "/burgers",
+    name: "Burgers",
+    component: BurgerFactory,
+  }
 ];
 
 const router = createRouter({
