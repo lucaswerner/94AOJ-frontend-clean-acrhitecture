@@ -1,17 +1,23 @@
 <script setup lang="ts">
-import { defineProps, PropType, ref, inject } from 'vue'
+import { defineProps, PropType, ref, inject, defineComponent  } from 'vue'
 import { Authentication, Validation } from "../../protocols"
+import { useRouter } from 'vue-router';
 
+const router = useRouter();
 const { authentication, currentAccount, validation } = defineProps({
   authentication: Object as PropType<Authentication>,
   validation: Object as PropType<Validation>,
-  currentAccount: Function as PropType<any>,
+  currentAccount: Function as PropType<CurrentAccountAdapter>,
 })
 
 const email = ref<string>('')
 const password = ref<string>('')
 const fieldErrror = ref<string>('')
 const valid = ref<boolean>(true)
+
+const redirectToHome = () => {
+  router.push({ name: 'Home' });
+}
 
 const changeValue = (event: Event) => {
   const { name, value } = event.target as HTMLInputElement
@@ -27,6 +33,7 @@ const login = async () => {
   try {
     const response = await authentication.auth(params)
     currentAccount.set(response)
+    redirectToHome()
   } catch (error) {
     console.error(error)
   } finally {
@@ -36,7 +43,12 @@ const login = async () => {
 </script>
 
 <template>
-  <div>
+  <v-row
+    align="center"
+    no-gutters
+    class="login-containter"
+  >
+  <div class="login-containter__form">
     <v-card
       class="mx-auto pa-12 pb-8"
       elevation="8"
@@ -90,6 +102,15 @@ const login = async () => {
       </v-btn>
     </v-card>
   </div>
+</v-row>
 </template>
 <style scoped>
+  .login-containter{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+  }
+  .login-containter__form{
+    min-width: 400px;
+  }
 </style>
