@@ -7,19 +7,16 @@
         <p class="subtitle-2"><a>Conheça Nosso Cardápio</a></p>
         <div class="carousel">
             <slide>
-              <img class="carousel-image" src="../../../../assets/double-burger-com-batata.jpg" alt="Double Burger com Batata">
+              <img class="carousel-image" src="../../../../assets/smash-burger.jpg" alt="Smash Burger" @click="$router.push('/burgers')">
             </slide>
             <slide>
-              <img class="carousel-image" src="../../../../assets/smash-burger.jpg" alt="Smash Burger">
+              <img class="carousel-image" src="../../../../assets/nuggets-vegano.jpg" alt="Nuggets Vegano" @click="$router.push('/appetizers')">
             </slide>
             <slide>
-              <img class="carousel-image" src="../../../../assets/nuggets-vegano.jpg" alt="Nuggets Vegano">
+              <img class="carousel-image" src="../../../../assets/bebidas.jpeg" alt="Bebidas" @click="$router.push('/beverages')">
             </slide>
             <slide>
-              <img class="carousel-image" src="../../../../assets/bebidas.jpeg" alt="Bebidas">
-            </slide>
-            <slide>
-              <img class="carousel-image" src="../../../../assets/sobremesa.jpg" alt="Sobremesa">
+              <img class="carousel-image" src="../../../../assets/sobremesa.jpg" alt="Sobremesa" @click="$router.push('/desserts')">
             </slide>
         </div>
       </div>
@@ -106,6 +103,7 @@
 
 .carousel img:hover {
   transform: scale(1.05);
+  cursor: pointer;
 }
 
 .menu-link p {
