@@ -8,7 +8,12 @@ export class OrderAdapter {
   private key = "order";
 
   constructor() {
-    MakeStorageAdapter().set(this.key, {});
+    MakeStorageAdapter().set(this.key, {
+      [OrderType.HAMBURGERS]: {},
+      [OrderType.APPETIZERS]: {},
+      [OrderType.DESSERTS]: {},
+      [OrderType.BEVERAGES]: {}
+    });
   }
 
   get(): Order {
@@ -16,9 +21,17 @@ export class OrderAdapter {
   }
 
   set(type: OrderType, item: CardData): void {
-    const orderFromStorage = { ...this.get() };
-    orderFromStorage[type] = item;
+    const orderFromStorage: Order = { ...this.get() };
+    const orderTypes = orderFromStorage[type];
+
+    const orderItem = orderTypes[item.id];
+    const count = !!orderItem ? orderItem.count + 1 : 1;
+
+    orderTypes[item.id] = { ...item, count };
+
     MakeStorageAdapter().set(this.key, orderFromStorage);
+
+    console.log(orderFromStorage);
   }
 
   delete(): void {
