@@ -27,31 +27,37 @@ const routes = [
         path: "/home",
         name: "Home",
         component: HomeFactory,
-        meta: { requiresAuth: true },
+        meta: { requiresAuth: true }
       },
       {
         path: "/burgers",
         name: "Burgers",
         component: BurgerFactory,
-        meta: { requiresAuth: true },
+        meta: { requiresAuth: true }
       },
       {
         path: "/appetizers",
         name: "Appetizers",
         component: AppertizerFactory,
-        meta: { requiresAuth: true },
+        meta: { requiresAuth: true }
       },
       {
         path: "/beverages",
         name: "Beverages",
         component: BeveragesFactory,
-        meta: { requiresAuth: true },
+        meta: { requiresAuth: true }
       },
       {
         path: "/desserts",
         name: "Desserts",
         component: DessertFactory,
-        meta: { requiresAuth: true },
+        meta: { requiresAuth: true }
+      },
+      {
+        path: "/shopping-cart",
+        name: "ShoppingCart",
+        component: CartFactory,
+        meta: { requiresAuth: true }
       }
     ]
   },
