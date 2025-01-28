@@ -24,7 +24,6 @@ const login = async () => {
     login: email.value,
     password: password.value
   }
-
   try {
     const response = await authentication.auth(params)
     currentAccount.set(response)
@@ -34,24 +33,63 @@ const login = async () => {
     console.log('finally')
   }
 }
-
 </script>
+
 <template>
   <div>
-    <h1>Login</h1>
-    <form @submit.prevent="login">
-      <div>
-        <label for="email">email</label>
-        <input type="text" id="email" name="email" v-model="email" @input="changeValue" placeholder="Username" />
-        <span>{{ fieldErrror }}</span>
+    <v-card
+      class="mx-auto pa-12 pb-8"
+      elevation="8"
+      max-width="448"
+      rounded="lg"
+    >
+      <div class="text-subtitle-1 text-medium-emphasis">Email</div>
+
+      <v-text-field
+        density="compact"
+        id="email"
+        v-model="email"
+        placeholder="Email"
+        prepend-inner-icon="mdi-email-outline"
+        variant="outlined"
+        @input="changeValue"
+      ></v-text-field>
+
+      <div class="text-subtitle-1 text-medium-emphasis d-flex align-center justify-space-between">
+        Senha
+
+        <a
+          class="text-caption text-decoration-none text-blue"
+          href="#"
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Esqueceu sua senha?</a>
       </div>
-      <div>
-        <label for="password">Senha</label>
-        <input type="password" id="password" name="password" v-model="password" @input="changeValue"
-          placeholder="Password" />
-      </div>
-      <button type="submit" :disabled="valid">Login</button>
-    </form>
+
+      <v-text-field
+        :type="'password'"
+        id="password"
+        density="compact"
+        placeholder="Senha"
+        v-model="password"
+        prepend-inner-icon="mdi-lock-outline"
+        variant="outlined"
+      ></v-text-field>
+
+      <v-btn
+        class="mb-8"
+        color="blue"
+        size="large"
+        variant="tonal"
+        @click="login()"
+        :disabled="valid"
+        block
+      >
+        Entrar
+      </v-btn>
+    </v-card>
   </div>
 </template>
-<style scoped></style>
+<style scoped>
+</style>
