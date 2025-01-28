@@ -19,9 +19,9 @@ function formatNumber(numberValue: number = 0) {
                 <v-col>
                     <v-carousel :show-arrows="false" hide-delimiters cycle>
                         <v-carousel-item v-for="(image, index) in data.image" :key="index">
-                            <v-img class="image-overlay" height="300" max-width="500" :src="image">
+                            <v-img class="image-overlay" height="180" max-width="300" :src="image">
                                 <template v-slot:error>
-                                    <v-img class="image-overlay" height="300" max-width="500"
+                                    <v-img class="image-overlay" height="180" max-width="300"
                                         src="src/assets/no-image-available.jpg"></v-img>
                                 </template>
                             </v-img>
@@ -56,9 +56,10 @@ function formatNumber(numberValue: number = 0) {
 }
 
 .image-overlay {
-    max-width: 100%;
-    height: initial !important;
-    object-fit: cover;
+    /* max-width: 100%;
+    height: 180px; */
+    /* height: 100%; */
+    /* object-fit: cover; */
 }
 
 .v-card-actions {
