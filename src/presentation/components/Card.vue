@@ -1,11 +1,17 @@
 <script setup lang="ts">
-import { defineProps } from 'vue'
+import { defineProps, ref } from 'vue'
 import { CardData } from '../../domain/models/cardData';
 
-defineProps<{
+const props = defineProps<{
     data: CardData,
     onAdd: (data: CardData) => void
 }>()
+
+const imageError = ref<boolean[]>(props.data.image.map(() => false));
+
+function handleImageError(index: number) {
+    imageError.value[index] = true;
+}
 
 function formatNumber(numberValue: number = 0) {
     return numberValue.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
@@ -19,12 +25,8 @@ function formatNumber(numberValue: number = 0) {
                 <v-col>
                     <v-carousel :show-arrows="false" hide-delimiters cycle>
                         <v-carousel-item v-for="(image, index) in data.image" :key="index">
-                          <v-img class="image-overlay" height="300" max-width="500" :src="image">
-                                <template v-slot:error>
-                                    <v-img class="image-overlay" height="300" max-width="500"
-                                        src="src/assets/no-image-available.jpg"></v-img>
-                                </template>
-                            </v-img>
+                            <v-img v-if="!imageError[index]" class="image-overlay" height="300" max-width="500" :src="image" @error="handleImageError(index)"></v-img>
+                            <v-img v-else class="image-overlay" height="300" max-width="500" src="src/assets/no-image-available.jpg"></v-img>
                         </v-carousel-item>
                     </v-carousel>
                 </v-col>
@@ -32,7 +34,7 @@ function formatNumber(numberValue: number = 0) {
             <v-row>
                 <v-col>
                     <v-card-title>{{ data.title }}</v-card-title>
-                    <v-card-text>{{ data.description }}</v-card-text>
+                    <v-card-text class="description">{{ data.description }}</v-card-text>
                 </v-col>
             </v-row>
             <v-card-actions>
@@ -50,6 +52,11 @@ function formatNumber(numberValue: number = 0) {
 </template>
 
 <style scoped>
+.description {
+    min-height: 100px;
+    max-height: 100px;
+}
+
 .image-row {
     max-height: 180px;
     overflow: hidden;
