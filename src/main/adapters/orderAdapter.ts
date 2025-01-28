@@ -20,7 +20,7 @@ export class OrderAdapter {
     return MakeStorageAdapter().get(this.key) as Order;
   }
 
-  set(type: OrderType, item: CardData): void {
+  add(type: OrderType, item: CardData): void {
     const orderFromStorage: Order = { ...this.get() };
     const orderTypes = orderFromStorage[type];
 

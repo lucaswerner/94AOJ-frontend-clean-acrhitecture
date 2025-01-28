@@ -6,7 +6,7 @@ import CardContainer from '../../../../presentation/components/CardContainer.vue
 import { MakeOrderAdapter } from '../../cache/orderAdapterFactory';
 
 const orderAdapter = MakeOrderAdapter();
-const onAdd = (data: CardData) => orderAdapter.set(OrderType.HAMBURGERS, data);
+const onAdd = (data: CardData) => orderAdapter.add(OrderType.HAMBURGERS, data);
 </script>
 
 <template>
