@@ -2,6 +2,8 @@ import { DeleteStorage, GetStorage, SetStorage } from "../protocols"
 
 export class StorageAdapter implements SetStorage, GetStorage, DeleteStorage {
   set(key: string, value: object): void {
+    console.log(key, value);
+    
     if (value) {
       sessionStorage.setItem(key, JSON.stringify(value))
     } else {

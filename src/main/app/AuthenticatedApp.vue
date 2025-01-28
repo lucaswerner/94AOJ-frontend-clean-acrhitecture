@@ -1,0 +1,38 @@
+<template>
+    <v-app>
+        <v-navigation-drawer app>
+            <v-list>
+                <v-list-item-group>
+                    <v-list-item @click="$router.push('/home')">
+                        <v-list-item-content>
+                            <v-list-item-title>Home</v-list-item-title>
+                        </v-list-item-content>
+                    </v-list-item>
+                    <v-list-item @click="$router.push('/burgers')">
+                        <v-list-item-content>
+                            <v-list-item-title>Burgers</v-list-item-title>
+                        </v-list-item-content>
+                    </v-list-item>
+                    <v-list-item @click="$router.push('/appetizers')">
+                        <v-list-item-content>
+                            <v-list-item-title>Porções</v-list-item-title>
+                        </v-list-item-content>
+                    </v-list-item>
+                    <v-list-item @click="$router.push('/beverages')">
+                        <v-list-item-content>
+                            <v-list-item-title>Bebidas</v-list-item-title>
+                        </v-list-item-content>
+                    </v-list-item>
+                    <v-list-item @click="$router.push('/desserts')">
+                        <v-list-item-content>
+                            <v-list-item-title>Sobremesas</v-list-item-title>
+                        </v-list-item-content>
+                    </v-list-item>                                                                                
+                </v-list-item-group>
+            </v-list>
+        </v-navigation-drawer>
+        <v-main>
+            <router-view />
+        </v-main>
+    </v-app>
+</template>
