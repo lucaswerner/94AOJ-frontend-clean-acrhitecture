@@ -19,7 +19,7 @@ function formatNumber(numberValue: number = 0) {
                 <v-col>
                     <v-carousel :show-arrows="false" hide-delimiters cycle>
                         <v-carousel-item v-for="(image, index) in data.image" :key="index">
-                            <v-img class="image-overlay" height="300" max-width="500" :src="image">
+                          <v-img class="image-overlay" height="300" max-width="500" :src="image">
                                 <template v-slot:error>
                                     <v-img class="image-overlay" height="300" max-width="500"
                                         src="src/assets/no-image-available.jpg"></v-img>
