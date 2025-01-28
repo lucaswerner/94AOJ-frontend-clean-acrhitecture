@@ -5,15 +5,15 @@ import { MakeStorageAdapter } from "../factories/cache/storeAdapterFactory";
 
 export class OrderAdapter {
 
-  private key = "order";
+  private readonly key = "order";
 
   constructor() {
-    MakeStorageAdapter().set(this.key, {
-      [OrderType.HAMBURGERS]: {},
-      [OrderType.APPETIZERS]: {},
-      [OrderType.DESSERTS]: {},
-      [OrderType.BEVERAGES]: {}
-    });
+    const initialOrder = Object.keys(OrderType)
+      .reduce((previousValue, nextValue) => {
+        return { ...previousValue, [nextValue]: {} };
+      }, {} as Order);
+
+    MakeStorageAdapter().set(this.key, initialOrder);
   }
 
   get(): Order {
