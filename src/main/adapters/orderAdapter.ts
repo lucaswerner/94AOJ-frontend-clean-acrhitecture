@@ -34,6 +34,27 @@ export class OrderAdapter {
     console.log(orderFromStorage);
   }
 
+  remove(type: OrderType, item: CardData): void {
+    const orderFromStorage: Order = { ...this.get() };
+    const orderTypes = orderFromStorage[type];
+
+    const orderItem = orderTypes[item.id];
+
+    if (!orderItem) {
+      return;
+    }
+
+    if (orderItem.count > 1) {
+      orderItem.count--;
+    } else {
+      delete orderTypes[item.id];
+    }
+
+    MakeStorageAdapter().set(this.key, orderFromStorage);
+
+    console.log(orderFromStorage);
+  }
+
   delete(): void {
     MakeStorageAdapter().delete(this.key);
   }
