@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Card from '../../../../presentation/components/Card.vue';
-import { cardDataList } from '../../../../data/burgerData';
+import { cardDataList } from '../../../../data/beverageData';
 </script>
 
 <template>
@@ -9,7 +9,7 @@ import { cardDataList } from '../../../../data/burgerData';
   </header>
   <main>
     <section id="menu">
-      <h2>Our Burgers</h2>
+      <h2>Our Beverages</h2>
       <div class="item-card-container">
         <Card v-for="cardData in cardDataList" :key="cardData.data.id" v-bind="cardData" />
       </div>
