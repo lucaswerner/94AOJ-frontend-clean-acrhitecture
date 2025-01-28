@@ -6,6 +6,7 @@ import BurgerFactory from "../factories/pages/burgers/BurgerFactory.vue";
 import AppertizerFactory from "../factories/pages/appetizers/AppertizerFactory.vue";
 import DessertFactory from "../factories/pages/desserts/DessertFactory.vue";
 import BeveragesFactory from "../factories/pages/beverages/BeveragesFactory.vue";
+import CartFactory from "../factories/pages/cart/CartFactory.vue";
 
 const routes = [
   {
@@ -38,6 +39,11 @@ const routes = [
     path: "/desserts",
     name: "Desserts",
     component: DessertFactory,
+  },
+  {
+    path: "/shopping-cart",
+    name: "ShoppingCart",
+    component: CartFactory
   }
 ];
 
