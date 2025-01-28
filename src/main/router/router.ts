@@ -7,7 +7,7 @@ import AuthenticatedApp from "../app/AuthenticatedApp.vue";
 import AppertizerFactory from "../factories/pages/appetizers/AppertizerFactory.vue";
 import DessertFactory from "../factories/pages/desserts/DessertFactory.vue";
 import BeveragesFactory from "../factories/pages/beverages/BeveragesFactory.vue";
-import CartFactory from "../factories/pages/cart/CartFactory.vue";
+import ShoppingCartFactory from "../factories/pages/cart/ShoppingCartFactory.vue";
 
 const routes = [
   {
@@ -56,9 +56,10 @@ const routes = [
       {
         path: "/shopping-cart",
         name: "ShoppingCart",
-        component: CartFactory,
+        component: ShoppingCartFactory,
         meta: { requiresAuth: true }
-      }
+      },
+
     ]
   },
   {
