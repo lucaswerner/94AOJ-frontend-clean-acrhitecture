@@ -1,5 +1,4 @@
 import {
-  Authentication,
   BadRequestError,
   ForbiddenError,
   InternalServerError,
@@ -8,6 +7,7 @@ import {
   UnauthorizedError,
   UnprocessableEntityError,
 } from "../../domain"
+import { Authentication } from "../../domain/usecases/authentication"
 import { HttpClient, HttpStatusCode } from "../protocols"
 
 export class PostAuthentication implements Authentication {
