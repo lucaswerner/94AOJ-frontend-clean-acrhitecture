@@ -9,14 +9,14 @@ import { MakeHamburgersQuery } from '../../usecases/HamburgersFactory';
 const orderAdapter = MakeOrderAdapter();
 const onAdd = (data: CardData) => orderAdapter.add(OrderType.HAMBURGERS, data);
 
-const state: { posts: Array<CardData> } = reactive({
-  posts: []
+const state: { cards: Array<CardData> } = reactive({
+  cards: []
 })
 
 onMounted(async () => {
   try {
     const response = await MakeHamburgersQuery().get();
-    state.posts = response.map(burger => ({ ...burger, value: burger.values.combo }));
+    state.cards = response.map(burger => ({ ...burger, value: burger.values.combo }));
   } catch (error) {
     console.error('Error fetching jobs:', error);
   }
@@ -24,7 +24,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <CardContainer v-bind:card-list="state.posts" v-on:add="onAdd" />
+  <CardContainer v-bind:card-list="state.cards" v-on:add="onAdd" />
 </template>
 
 <style scoped></style>
