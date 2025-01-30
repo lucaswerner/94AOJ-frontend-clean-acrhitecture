@@ -16,7 +16,9 @@ const state: { cards: Array<CardData> } = reactive({
 onMounted(async () => {
   try {
     const response = await MakeBeveragesQuery().get();
-    state.cards = response;
+    state.cards = response.map(beverage => ({...beverage, image: [beverage.image]}));
+    console.log(state.cards);
+    
   } catch (error) {
     console.error('Error fetching jobs:', error);
   }
