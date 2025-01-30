@@ -18,7 +18,7 @@ onMounted(async () => {
     const response = await MakeHamburgersQuery().get();
     state.cards = response.map(burger => ({ ...burger, value: burger.values.combo }));
   } catch (error) {
-    console.error('Error fetching jobs:', error);
+    console.error('Error fetching burgers:', error);
   }
 });
 </script>

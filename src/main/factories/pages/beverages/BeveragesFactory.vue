@@ -18,7 +18,7 @@ onMounted(async () => {
     const response = await MakeBeveragesQuery().get();
     state.cards = response.map(beverage => ({...beverage, image: [beverage.image]}));
   } catch (error) {
-    console.error('Error fetching jobs:', error);
+    console.error('Error fetching beverages:', error);
   }
 });
 </script>
