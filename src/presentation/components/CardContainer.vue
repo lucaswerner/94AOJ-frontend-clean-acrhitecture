@@ -16,7 +16,6 @@ defineProps<{
   </header>
   <main>
     <section id="menu">
-      <h2>Our Burgers</h2>
       <div class="item-card-container">
         <Card v-for="data in cardList" :key="data.id" v-bind:data="data" v-on:add="onAdd" />
       </div>

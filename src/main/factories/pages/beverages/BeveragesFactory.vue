@@ -17,8 +17,6 @@ onMounted(async () => {
   try {
     const response = await MakeBeveragesQuery().get();
     state.cards = response.map(beverage => ({...beverage, image: [beverage.image]}));
-    console.log(state.cards);
-    
   } catch (error) {
     console.error('Error fetching jobs:', error);
   }
@@ -26,6 +24,7 @@ onMounted(async () => {
 </script>
 
 <template>
+   <h2>Our Beverages</h2>
   <CardContainer v-bind:card-list="state.cards" v-on:add="onAdd" />
 </template>
 

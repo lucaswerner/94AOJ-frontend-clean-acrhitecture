@@ -24,6 +24,7 @@ onMounted(async () => {
 </script>
 
 <template>
+  <h2>Our Burgers</h2>
   <CardContainer v-bind:card-list="state.cards" v-on:add="onAdd" />
 </template>
 
