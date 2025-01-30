@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { defineProps, ref } from 'vue'
-import { CardData } from '../../domain/models/cardData';
+import { ShoppingCartData } from '../../domain/models/shoppingCartData';
 
 const props = defineProps<{
-    data: CardData,
-    onAdd: (data: CardData) => void
+    data: ShoppingCartData,
+    onAdd: (data: ShoppingCartData) => void,
+    onSubtractOne: (data: ShoppingCartData) => void,
+    onRemove: (data: ShoppingCartData) => void
 }>()
 
 const imageError = ref<boolean[]>(props.data.image.map(() => false));
@@ -25,8 +27,8 @@ function formatNumber(numberValue: number = 0) {
                 <v-col>
                     <v-carousel :show-arrows="false" hide-delimiters cycle>
                         <v-carousel-item v-for="(image, index) in data.image" :key="index">
-                            <v-img v-if="!imageError[index]" max-width="500"
-                                :src="image" @error="handleImageError(index)"></v-img>
+                            <v-img v-if="!imageError[index]" max-width="500" :src="image"
+                                @error="handleImageError(index)"></v-img>
                             <v-img v-else class="image-overlay" max-width="500"
                                 src="src/assets/no-image-available.jpg"></v-img>
                         </v-carousel-item>
@@ -34,7 +36,10 @@ function formatNumber(numberValue: number = 0) {
                 </v-col>
                 <v-col>
                     <v-row>
-                        <v-card-title class="title">{{ data.title }}</v-card-title>
+                        <v-card-title class="title">
+                            <span>{{ data.title }}</span>
+                            <span><v-btn variant="text" icon="mdi-delete" @click="onRemove(data)"></v-btn></span>
+                        </v-card-title>
                     </v-row>
                     <v-row>
                         <v-card-text class="description">{{ data.description }}</v-card-text>
@@ -43,23 +48,21 @@ function formatNumber(numberValue: number = 0) {
                         <v-card-actions>
                             <v-col>
                                 <div class="option-wrapper d-flex justify-start">
-                                    <v-btn icon="mdi-delete"></v-btn>
+                                    <v-btn icon="mdi-minus-circle" @click="onSubtractOne(data)"></v-btn>
                                 </div>
                             </v-col>
                             <v-col>
+                                <span>{{ data.count }}</span>
+                            </v-col>
+                            <v-col>
                                 <div class="option-wrapper d-flex justify-start">
-                                    <v-btn icon="mdi-minus-circle"></v-btn>
+                                    <v-btn icon="mdi-plus-circle" @click="onAdd(data)"></v-btn>
                                 </div>
                             </v-col>
                             <v-col>
                                 <div class="price-wrapper">
                                     <label class="currency price">R$</label>
                                     <span class="price">{{ formatNumber(data.value) }}</span>
-                                </div>
-                            </v-col>
-                            <v-col>
-                                <div class="option-wrapper d-flex justify-start">
-                                    <v-btn icon="mdi-plus-circle"></v-btn>
                                 </div>
                             </v-col>
                         </v-card-actions>
@@ -120,5 +123,11 @@ function formatNumber(numberValue: number = 0) {
 
 .option-wrapper .count {
     padding: 0 15px;
+}
+
+.v-card-title.title {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
 </style>

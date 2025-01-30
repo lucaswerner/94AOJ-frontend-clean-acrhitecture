@@ -5,8 +5,10 @@ type OrderTypeList = CardData & {
   count: number
 };
 
+export type OrderTypeData = {
+  [id in number]: OrderTypeList;
+};
+
 export type Order = {
-  [key in OrderType]: {
-    [id in number]: OrderTypeList;
-  }
+  [key in OrderType]: OrderTypeData
 };
