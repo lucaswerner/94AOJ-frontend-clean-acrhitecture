@@ -29,6 +29,10 @@ export class ShoppingCartAdapter {
         return this.orderService.remove(shoppingCartData.type, shoppingCartData);
     }
 
+    deleteAll(): void {
+        this.orderService.deleteAll();
+    }
+
     private orderObjectsToArray(order: Order, type: OrderType): Array<ShoppingCartData> {
         const newLocal = order[type];
 

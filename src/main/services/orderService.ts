@@ -78,4 +78,13 @@ export class OrderService {
         return newOrder;
     }
 
+    deleteAll(): void {
+        this._order = Object.keys(OrderType)
+            .reduce((previousValue, nextValue) => {
+                return { ...previousValue, [nextValue]: {} };
+            }, {} as Order);
+
+        this.orderAdapter.set(this._order);
+    }
+
 }
