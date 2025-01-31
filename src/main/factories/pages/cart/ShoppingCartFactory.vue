@@ -16,9 +16,10 @@ const router = useRouter();
 
 const shoppingCartDecorator = MakeShoppingCartDecorator();
 
-const state: { cartItems: Array<ShoppingCartData>, paymentOptions: Array<PaymentOption>, createdOrder: OrderModel | null } = reactive({
+const state: { cartItems: Array<ShoppingCartData>, paymentOptions: Array<PaymentOption>, createdOrder: OrderModel | null, paymentOptionId: string } = reactive({
   cartItems: shoppingCartDecorator.getShoppingCartItems(),
   paymentOptions: [],
+  paymentOptionId: "23",
   createdOrder: null
 })
 
@@ -91,7 +92,21 @@ let showDialog = false;
             Total: R$ {{ sumAllValues(state.cartItems) }}
           </h1>
         </div>
-        {{ state.paymentOptions }}
+
+        <v-row>
+          <v-col>
+            <v-container fluid>
+              <label>Selecione uma opção de pagamento: </label>
+              <v-radio-group v-model="state.paymentOptionId">
+                <v-radio v-for="option in state.paymentOptions" v-label="option.text" v-value="option.id" v-bind:key="option.id"></v-radio>
+                <v-radio label="Option One" value="one"></v-radio>
+                <v-radio label="Option 2 (string)" value="2"></v-radio>
+                <v-radio :value="3" label="Option 3 (integer)"></v-radio>
+              </v-radio-group>
+            </v-container>
+          </v-col>
+        </v-row>
+
         <v-btn variant="text" icon="mdi-delete" @click="submitCheckout(state.cartItems, '23')">COMPRAR</v-btn>
       </div>
       <v-dialog v-model="showDialog" width="auto">
