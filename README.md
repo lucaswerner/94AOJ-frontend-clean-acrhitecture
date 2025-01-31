@@ -1,7 +1,7 @@
 # Integrantes do grupo
-Lucas Werner - RM 354268
-Tiago Pala - RM 353470
-Bruno Martins - RM 355191
+Lucas Werner - RM 354268<br>
+Tiago Pala - RM 353470<br>
+Bruno Martins - RM 355191<br>
 
 ### Instalando o projeto
 
