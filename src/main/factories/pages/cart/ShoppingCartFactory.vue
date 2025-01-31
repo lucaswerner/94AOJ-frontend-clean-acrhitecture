@@ -95,19 +95,18 @@ let showDialog = false;
 
         <v-row>
           <v-col>
-            <v-container fluid>
-              <label>Selecione uma opção de pagamento: </label>
-              <v-radio-group v-model="state.paymentOptionId">
-                <v-radio v-for="option in state.paymentOptions" v-label="option.text" v-value="option.id" v-bind:key="option.id"></v-radio>
-                <v-radio label="Option One" value="one"></v-radio>
-                <v-radio label="Option 2 (string)" value="2"></v-radio>
-                <v-radio :value="3" label="Option 3 (integer)"></v-radio>
-              </v-radio-group>
-            </v-container>
+            <v-radio-group label="Selecione uma opção de pagamento:" v-model="state.paymentOptionId">
+              <v-radio v-for="option in state.paymentOptions" :label="option.text" :value="option.id"></v-radio>
+            </v-radio-group>
           </v-col>
         </v-row>
 
-        <v-btn variant="text" icon="mdi-delete" @click="submitCheckout(state.cartItems, '23')">COMPRAR</v-btn>
+        <v-row>
+          <v-col>
+            <v-btn background="red" rounded="0" size="x-large" variant="text" class="btn-checkout bg-red-darken-2 " @click="submitCheckout(state.cartItems, '23')" block>COMPRAR</v-btn>
+          </v-col>
+        </v-row>
+
       </div>
       <v-dialog v-model="showDialog" width="auto">
         <v-card>
@@ -138,7 +137,7 @@ let showDialog = false;
           </template>
         </v-card>
       </v-dialog>
-      {{ state.createdOrder }}
+      <p class="ops">{{ state.createdOrder }}</p>
     </section>
   </main>
 </template>
@@ -169,5 +168,13 @@ main {
 
 .total-right {
   text-align: right;
+}
+
+.btn-checkout {
+  float: right;
+}
+
+.ops {
+  display: none;
 }
 </style>
