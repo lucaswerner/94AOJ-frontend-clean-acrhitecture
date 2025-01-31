@@ -9,13 +9,11 @@ const validationComposite = ValidationComposite.build([
   ...ValidationBuilder.field("email").required().email().build(),
   ...ValidationBuilder.field("password").required().min(3).build(),
 ])
-
 </script>
 <template>
-    <Login 
-      :authentication="MakeAuthentication()" 
-      :currentAccount="MakeCurrentAccountAdapter()"
-      :validation="validationComposite"
-    />
-  </template>
-
+  <Login 
+    :authentication="MakeAuthentication()" 
+    :currentAccount="MakeCurrentAccountAdapter()"
+    :validation="validationComposite" 
+  />
+</template>
